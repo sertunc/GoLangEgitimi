@@ -1,0 +1,883 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Go Lang</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="20a57056-1fb1-4bba-8f27-aeaa9678ec83" class="page sans"><header><h1 class="page-title">Go Lang</h1></header><div class="page-body"><h1 id="ab02ac9c-61a7-4abe-8348-36649501c16a" class="">Kısa Notlar</h1><ul id="7fa1878d-e30a-43ba-947f-a2e2db398341" class="toggle"><li><details open=""><summary>Eğitim Linkleri</summary><p id="66b7220a-4e1a-47f0-9ac3-072a09992803" class=""><a href="https://www.youtube.com/watch?v=MzTcsI6tn-0">https://www.youtube.com/watch?v=MzTcsI6tn-0</a></p><p id="cf844c1d-e2ed-440b-a837-20843fa62f27" class=""><a href="https://www.youtube.com/playlist?list=PL-Hkw4CrSVq96dPr33xTdBjSgn9wKLHPa">https://www.youtube.com/playlist?list=PL-Hkw4CrSVq96dPr33xTdBjSgn9wKLHPa</a></p><p id="73dd475f-7b34-4ed6-8e64-b9cf6b65906a" class=""><a href="https://golang.org/ref/spec#Boolean_types">https://golang.org/ref/spec#Boolean_types</a></p><p id="d2c7396b-78b4-4ada-b119-c3556df976c5" class=""><a href="https://golangbot.com/learn-golang-series/">https://golangbot.com/learn-golang-series/</a></p><p id="57263549-5872-493e-b976-53bd9ee78df7" class=""><a href="https://github.com/ArinSoftware/golang">https://github.com/ArinSoftware/golang</a></p><p id="80b0b04d-06e7-4a38-a587-ab870e6efab1" class=""><a href="https://go-talks.appspot.com/github.com/fatih/talks/go-giris/giris.slide#1">https://go-talks.appspot.com/github.com/fatih/talks/go-giris/giris.slide#1</a></p><p id="36917a00-9bcc-41c8-8fd7-4cdd936829d5" class=""><a href="https://go.kaanksc.com/">https://go.kaanksc.com/</a></p><p id="a33d2a0f-ccfc-4282-9887-579cb6734e1b" class=""><a href="https://medium.com/i%CC%87yi-programlama/golang-c31ab87eb67c">https://medium.com/i̇yi-programlama/golang-c31ab87eb67c</a></p><p id="130d2cba-ac63-4cb4-a971-0d8394e547c6" class=""><a href="https://handeebrar.medium.com/golang-structs-with-out-pointers-5e86f0674a55">https://handeebrar.medium.com/golang-structs-with-out-pointers-5e86f0674a55</a></p><p id="27996a74-b326-416c-afa5-594f819afabb" class=""><a href="https://github.com/cihanozhan/golang-file-samples">https://github.com/cihanozhan/golang-file-samples</a></p><p id="3860aed8-3b55-4bf6-b3c2-45356cf2a860" class=""><a href="https://github.com/cihanozhan/golang-webapi-samples">https://github.com/cihanozhan/golang-webapi-samples</a></p><p id="3dde0a3c-1c96-4d2f-8b7e-a885f18035c4" class="">
+</p></details></li></ul><ul id="105f59f6-693d-424f-81b4-8f5a1c49df00" class="toggle"><li><details open=""><summary>Genel Notlar</summary><ul id="23b0d9d0-7b06-44cc-9880-6237837a9385" class="bulleted-list"><li>çalıştırmak için → go run dosya_adi.go</li></ul><ul id="09d6bd61-7f64-4bcc-86dd-6d34dc3b62ad" class="bulleted-list"><li>exe çıktı almak için → go build dosya_adi.go</li></ul><ul id="16ca1e7f-e10d-40c2-918a-f22646b85127" class="bulleted-list"><li>go ayarları için → go env</li></ul><ul id="d49d239d-2435-4705-a3f2-cfc0122a78a5" class="bulleted-list"><li>vs code extension olarak go kurulur. ardından sağ altta çıkan &quot;Analysis Tools Missing&quot; kısmına tıklanıp diğer extensionlar kurulur</li></ul><ul id="ceec2930-d308-4c05-8bf6-43214b1e1484" class="bulleted-list"><li>Paket yönetimi →<a href="https://pkg.go.dev/">https://pkg.go.dev/</a></li></ul><ul id="f0e5ac0f-ea1c-44d2-b309-af002696655f" class="bulleted-list"><li>Paketi indirmek için → go get paket_linki</li></ul><ul id="ee51a4a4-35ea-4639-83a1-96f899abc1c9" class="bulleted-list"><li>printf fotmatlı yazmak için kullanılır. format detayları için dökümana bakabiliriz.</li></ul><ul id="c64e2096-493b-47fe-84ca-062754e2f4a9" class="bulleted-list"><li>küçük harfle başlayan değişkenler private, büyük harfle başlayanlar ise public olur.</li></ul><ul id="c2fe42c0-72ae-4e8b-bbe6-4ee5a07f7529" class="bulleted-list"><li>Bazen paket isimleri birbiriyle çakışabilir veya paket ismini takma bir ad ile kullanmak isteyebilirsiniz. Bu durumda paketi import ederken isminin başına takma ad eklemek yeterli olacaktır. <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="caeada88-c074-43c1-9868-9a984c16873f" class="code code-wrap"><code><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+    <span class="token string">"fmt"</span>
+    rnd <span class="token string">"math/rand"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    n <span class="token operator">:=</span> rnd<span class="token punctuation">.</span><span class="token function">Int</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre></li></ul></details></li></ul><ul id="2a714bd7-087b-4c5b-a2e7-de1e3e78b927" class="toggle"><li><details open=""><summary>Değişkenler</summary><ul id="adaa2838-c6a9-437e-8828-42edb076868a" class="bulleted-list"><li>var name string = &quot;sertunc&quot; veya var name = &quot;sertunc&quot; veya name:=&quot;sertunc&quot;</li></ul><ul id="f8595f99-2652-4832-81ba-eba10eedbbc5" class="bulleted-list"><li>var age int = 30 veya var age = 30 veya age:=30</li></ul><ul id="a8b25d9a-2180-4e24-9edd-5cb44265954d" class="bulleted-list"><li>var isMarried bool = false veya var isMarried = false veya  isMarried:=false</li></ul><ul id="d4ab70f0-8c40-4503-9194-e797bf3cd5c2" class="bulleted-list"><li>var firstName, lastName string = &quot;Sertunc&quot;, &quot;Selen&quot;</li></ul><ul id="2c73d8bd-8c2e-40d6-a426-f308b252f532" class="bulleted-list"><li>(unsigned) uint8 (0 to 255) = 256 alırken int8 (-128 to 127) = 256 alır. </li></ul><p id="01f398cb-4d81-49c4-bfde-ad64b964a229" class="">var (
+         name string = &quot;sertunc&quot;</p><p id="6aa612fb-4b59-4016-b233-63c0eaed1d46" class="">         surname string = &quot;selen&quot;</p><p id="09264283-b2dd-400e-9891-83c7fb426c92" class="">      )</p><p id="5e048c02-97b6-4a44-8379-3e2d98eba7aa" class="">var name, surname = &quot;sertunc&quot;, &quot;selen&quot; → okunurluğu daha az</p><p id="fc849314-b3e4-45dd-863b-dcd997735f05" class="">name, surname := &quot;sertunc&quot;, &quot;selen&quot; → okunurluğu daha az</p><ul id="ffef49f9-94fc-43b3-8c2f-f9c38b467503" class="bulleted-list"><li>package seviyesinde var keywordu olmadan değişken tanımlanmaz</li></ul><ul id="40a7ac16-ac26-43ce-9de5-e0b8132c7bfe" class="bulleted-list"><li>const pi float32 = 3,14</li></ul><ul id="a3872e10-5d48-406a-a2ac-9bc450d424dd" class="bulleted-list"><li>tyopless değişkenlerde işlemi gerçekleştirmek için çalışır. biri typeli biri typesız olursa typelı olana göre convert edip işler</li></ul></details></li></ul><ul id="020a3346-a001-409a-a6f8-330b5927efb7" class="toggle"><li><details open=""><summary>Tip dönüşümleri</summary><p id="5e08f9bd-26db-4c7e-9bac-2fb257ed6b35" class="">Type Conversion type(value) =&gt; int(y) = 10.0 =&gt; 10</p><p id="fba1c2c2-21f5-4947-93d0-1d517334950a" class="">x := 65</p><p id="adb34730-f90b-44e9-9c0d-b44268a78bc3" class="">s := string(x)</p><p id="9f504c37-cfb0-4ab5-ab77-14d199028e64" class="">fmt.Printf(&quot;%v, %T\n&quot;, x, x) // 65</p><p id="2d26740d-23c1-4a8b-9538-0fe447fb288e" class="">fmt.Printf(&quot;%v, %T\n&quot;, s, s) // A</p><p id="460a7b2f-4c97-49c8-a706-da806b448d06" class="">y := strconv.Itoa(x)</p><p id="2f5c0f7b-c4ab-44f8-9f76-5d7fc96aac56" class="">fmt.Printf(&quot;%v, %T\n&quot;, y, y) // &quot;65&quot;</p></details></li></ul><ul id="0a1fcc5b-5cf7-49b1-8dc2-9a3c0732bf3f" class="toggle"><li><details open=""><summary>Print-Println ve Printf</summary><p id="5448eb0b-b7b1-41c7-bbf7-57e3e5a63485" class="">name, age := &quot;Arin&quot;, 5</p><p id="32ab9511-0468-47cd-ae0b-ca9719e80b62" class="">fmt.Print(&quot;Benim Adım &quot;, name, &quot;, ve ben &quot;, age, &quot; yaşındayım.&quot;)</p><p id="6eb7e675-26cb-4a02-8927-c64946bd6ff2" class="">fmt.Println(&quot;Benim Adım&quot;, name, &quot;ve ben&quot;, age, &quot;yaşındayım.&quot;) → arada kendi boşluk bırakır</p><p id="83263dce-73f6-472c-97ec-e87ab88af6cc" class="">fmt.Printf(&quot;Benim Adım %v, ve ben %v yaşındayım&quot;, name, age)</p></details></li></ul><ul id="2d276f20-58e7-4f33-8d0a-cf7f5cd892cd" class="toggle"><li><details open=""><summary>Fonksiyonlar</summary><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="dd97a275-566a-43bc-9a29-87f04c4a125e" class="code"><code><span class="token keyword">func</span> bö<span class="token function">lme</span><span class="token punctuation">(</span>bölünen<span class="token punctuation">,</span> bö<span class="token builtin">len</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">(</span>bölüm<span class="token punctuation">,</span> kalan <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	bölüm <span class="token operator">=</span> bölünen <span class="token operator">/</span> bö<span class="token builtin">len</span>
+	kalan <span class="token operator">=</span> bölünen <span class="token operator">%</span> bö<span class="token builtin">len</span>
+
+	<span class="token keyword">return</span> bölüm<span class="token punctuation">,</span> kalan
+<span class="token punctuation">}</span>
+veya
+<span class="token keyword">func</span> bö<span class="token function">lme</span><span class="token punctuation">(</span>bölünen<span class="token punctuation">,</span> bö<span class="token builtin">len</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	bölüm <span class="token operator">=</span> bölünen <span class="token operator">/</span> bö<span class="token builtin">len</span>
+	kalan <span class="token operator">=</span> bölünen <span class="token operator">%</span> bö<span class="token builtin">len</span>
+
+	<span class="token keyword">return</span> bölüm<span class="token punctuation">,</span> kalan
+<span class="token punctuation">}</span></code></pre></details></li></ul><ul id="f9b43d44-8526-46d0-a74b-936f55c335e3" class="toggle"><li><details open=""><summary>Arrays</summary><p id="a7d300b3-231a-4097-adc4-94bd3aae3b14" class="">arrayler slicelara göre daha güvenilir ve hızlıdır. ve arrayler value typetır.</p><p id="8cd1b6d1-7bc9-44ad-9aaa-06ce65193c58" class="">cities := [4]string {&quot;istanbul&quot;, &quot;roma&quot;, &quot;tahran&quot;, &quot;belgrad&quot;}</p><p id="0731f18a-fe5c-4347-8489-bfd8754bd67c" class="">myArr2 := [...]int{1, 2, 3, 4} → size kendi bulur</p><p id="f96b60f0-faa1-40dd-9c39-4791059ea11a" class="">var myArr [5]int</p><p id="519cb3d7-27e6-42d6-94d1-a62103f2ed9e" class="">for index, city := range cities { bla bla }</p><p id="bcab5d87-6bf7-4983-9a45-5b3d31ede245" class="">for _, city := range cities { bla bla } → blank identify</p></details></li></ul><ul id="dd6c56a6-df57-4390-9b70-dc01f15a5d4d" class="toggle"><li><details open=""><summary>Slice</summary><p id="a6a429e8-f4e2-4bb0-9522-b5773361f249" class="">sliceler reference typetır. ve arraylerin üzerine oluşturulmuş yapılardır. </p><p id="eb6d43d5-a072-4d7c-81b1-2a489a5e955f" class="">mySlc := []int {1, 2, 3} → eleman sayısı bilmez</p><p id="0189360f-223c-4dc0-87c6-7f3ef1a440dc" class="">var mySlc []int</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="51224d81-52b1-4bb9-a007-7cfaed425d0b" class="code"><code><span class="token keyword">var</span> mySlc <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span>
+mySlc <span class="token operator">=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token comment">// MAKE METHOD</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>mySlc<span class="token punctuation">)</span>
+mySlc<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">10</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>mySlc<span class="token punctuation">)</span></code></pre><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="f6e510fb-4224-46a8-9ebd-79731c542f45" class="code"><code>mySlc <span class="token operator">:=</span> underArray<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">:</span><span class="token number">5</span><span class="token punctuation">]</span> → <span class="token number">2.</span> index dahil başla <span class="token number">5.</span> index dahil değil
+mySlc2 <span class="token operator">:=</span> underArray<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">6</span><span class="token punctuation">]</span> → <span class="token number">0</span> dan başla <span class="token number">6</span> ya kadar al 
+mySlc3 <span class="token operator">:=</span> underArray<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">:</span><span class="token punctuation">]</span> → <span class="token number">3</span> den başla sonuna kadar al
+mySlc4 <span class="token operator">:=</span> underArray<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token punctuation">]</span> → hepsini al</code></pre><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="687d7756-a268-493c-9f4b-1fac678d67b1" class="code"><code>mySlc <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">}</span>
+mySlc <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>mySlc<span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span> → slice'a yeni değerler ekler<span class="token punctuation">.</span> <span class="token builtin">append</span> yeni bir slice oluşturur<span class="token punctuation">.</span> Dolayısıyla value <span class="token keyword">type</span> olacaktır<span class="token punctuation">.</span></code></pre><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="de756c1c-17d8-443c-943f-250dff53f5f3" class="code"><code>mySlc <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">}</span>
+mySlc2 <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">{</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span>
+mySlc <span class="token operator">=</span> <span class="token function">append</span><span class="token punctuation">(</span>mySlc<span class="token punctuation">,</span> mySlc2<span class="token operator">...</span><span class="token punctuation">)</span> → spread yapılır<span class="token punctuation">.</span> <span class="token builtin">int</span> slice'a sadece <span class="token builtin">int</span> değerler eklenebilir<span class="token punctuation">.</span> <span class="token builtin">int</span> slice eklenemez</code></pre><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="35a5ac1f-f5b5-4564-8cd2-c2e08cf0f7e9" class="code"><code>mySlc <span class="token operator">:=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">}</span>
+mySlc2 <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token function">copy</span><span class="token punctuation">(</span>mySlc2<span class="token punctuation">,</span> mySlc<span class="token punctuation">)</span> → value <span class="token keyword">type</span> olarak oluşturur<span class="token punctuation">.</span> hedef slicein eleman sayısı kopyalanan sliceden küçükse sadece eleman alabileceği kadar kopyalar</code></pre></details></li></ul><ul id="2789b4b4-2da0-4a68-b863-21ce1b713fa3" class="toggle"><li><details open=""><summary>Map</summary><p id="89d2a816-63b6-4a4f-8e5d-d189048556ed" class="">Olmayan key&#x27;e ulaşmaya çalışırsak default value döner. mapler reference typetır.</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="00bd0084-e8ba-492b-89ca-2cabaadece30" class="code"><code>myMap <span class="token operator">:=</span> <span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">{</span>
+<span class="token string">"Ahmet"</span><span class="token punctuation">:</span> <span class="token number">40</span><span class="token punctuation">,</span>
+<span class="token string">"Ayşe"</span><span class="token punctuation">:</span> <span class="token number">17</span><span class="token punctuation">,</span>
+<span class="token string">"Selim"</span><span class="token punctuation">:</span> <span class="token number">14</span><span class="token punctuation">,</span>
+<span class="token string">"Mustafa"</span><span class="token punctuation">:</span> <span class="token number">70</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>myMap<span class="token punctuation">)</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>myMap<span class="token punctuation">[</span><span class="token string">"Ahmet"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> myMap<span class="token punctuation">[</span><span class="token string">"Selim"</span><span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="074dcb00-e4d8-45be-bd41-2163baeeeaae" class="code"><code>myMap <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token builtin">int</span><span class="token punctuation">)</span></code></pre><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="a4a4e815-49e9-46ec-8739-e4c6c5ee79c1" class="code"><code>value<span class="token punctuation">,</span> ok <span class="token operator">:=</span> studentGrades<span class="token punctuation">[</span><span class="token string">"Arin"</span><span class="token punctuation">]</span> → mapde <span class="token keyword">var</span> mı kontrolü ok'ta saklanır<span class="token punctuation">.</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span> ok<span class="token punctuation">)</span>
+<span class="token boolean">_</span><span class="token punctuation">,</span> ok <span class="token operator">:=</span> studentGrades<span class="token punctuation">[</span><span class="token string">"Elis"</span><span class="token punctuation">]</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>ok<span class="token punctuation">)</span></code></pre><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="4f902019-9611-4635-9a0e-28cf2c4e2bbf" class="code"><code>studentGrades<span class="token punctuation">[</span><span class="token string">"Mahmut"</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">55</span>
+<span class="token function">delete</span><span class="token punctuation">(</span>studentGrades<span class="token punctuation">,</span> <span class="token string">"Selim"</span><span class="token punctuation">)</span></code></pre><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="1101ca5f-2f2b-4f2a-8322-603e01f74bb0" class="code"><code><span class="token keyword">for</span> k<span class="token punctuation">,</span> v <span class="token operator">:=</span> <span class="token keyword">range</span> studentGrades <span class="token punctuation">{</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>k<span class="token punctuation">,</span> v<span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="d68e239d-ad5e-4156-ba9c-5b228db99a03" class="code"><code>myMap <span class="token operator">:=</span> <span class="token keyword">map</span><span class="token punctuation">[</span><span class="token builtin">string</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">{</span>
+<span class="token string">"Yaşar Kemal"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">{</span><span class="token string">"İnce Memed"</span><span class="token punctuation">,</span> <span class="token string">"Yer Demir Gök Bakır"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token string">"Sabahattin Ali"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">{</span><span class="token string">"Kuyucaklı Yusuf"</span><span class="token punctuation">,</span> <span class="token string">"Kürk Mantolu Madonna"</span><span class="token punctuation">,</span> <span class="token string">"Değirmen"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token string">"Haruki Murakami"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">{</span><span class="token string">"1Q84"</span><span class="token punctuation">,</span> <span class="token string">"Dans Dans Dans"</span><span class="token punctuation">,</span> <span class="token string">"Kumandanı Öldürmek"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>myMap<span class="token punctuation">)</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>myMap<span class="token punctuation">[</span><span class="token string">"Sabahattin Ali"</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>myMap<span class="token punctuation">[</span><span class="token string">"Haruki Murakami"</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> key<span class="token punctuation">,</span> value <span class="token operator">:=</span> <span class="token keyword">range</span> myMap <span class="token punctuation">{</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Yazarımız: "</span><span class="token punctuation">,</span> key<span class="token punctuation">)</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Bazı kitapları aşağıdadır:"</span><span class="token punctuation">)</span>
+		<span class="token keyword">for</span> i<span class="token punctuation">,</span> v <span class="token operator">:=</span> <span class="token keyword">range</span> value <span class="token punctuation">{</span>
+			fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"\t"</span><span class="token punctuation">,</span> i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">,</span> v<span class="token punctuation">)</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span></code></pre><p id="0bbc7edc-e957-4603-bd4b-f6cf561b4578" class="">
+</p></details></li></ul><ul id="14744240-3106-4458-bee8-a3a95e3e54b1" class="toggle"><li><details open=""><summary>Struct</summary><ul id="ba000717-2ee8-4b92-910d-26b74b2a1df2" class="bulleted-list"><li>structlar value typetır.</li></ul><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="21869dfe-3e70-4bd9-85a9-9ea6e8e9a0f5" class="code"><code><span class="token keyword">var</span> employee <span class="token keyword">struct</span> <span class="token punctuation">{</span> <span class="token comment">// structure</span>
+		name      <span class="token builtin">string</span>
+		age       <span class="token builtin">int</span>
+		isMarried <span class="token builtin">bool</span>
+	<span class="token punctuation">}</span>
+employee<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"Gurcan"</span>
+employee<span class="token punctuation">.</span>age <span class="token operator">=</span> <span class="token number">40</span>
+employee<span class="token punctuation">.</span>isMarried <span class="token operator">=</span> <span class="token boolean">true</span>
+fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"%#v\n"</span><span class="token punctuation">,</span> employee<span class="token punctuation">)</span>
+
+<span class="token keyword">var</span> employee2 <span class="token keyword">struct</span> <span class="token punctuation">{</span> <span class="token comment">// structure</span>
+	name      <span class="token builtin">string</span>
+	age       <span class="token builtin">int</span>
+	isMarried <span class="token builtin">bool</span>
+<span class="token punctuation">}</span>
+employee2<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"Arin"</span>
+employee2<span class="token punctuation">.</span>age <span class="token operator">=</span> <span class="token number">5</span>
+employee2<span class="token punctuation">.</span>isMarried <span class="token operator">=</span> <span class="token boolean">false</span></code></pre><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="c3db97af-1874-436d-b0e8-8886d18f6f29" class="code"><code><span class="token keyword">type</span> employee <span class="token keyword">struct</span> <span class="token punctuation">{</span> <span class="token comment">// underlying type</span>
+	name      <span class="token builtin">string</span>
+	age       <span class="token builtin">int</span>
+	isMarried <span class="token builtin">bool</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> e1 employee
+e1<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"Gurcan"</span>
+e1<span class="token punctuation">.</span>age <span class="token operator">=</span> <span class="token number">40</span>
+e1<span class="token punctuation">.</span>isMarried <span class="token operator">=</span> <span class="token boolean">true</span>
+
+e3 <span class="token operator">:=</span> employee<span class="token punctuation">{</span>
+		name<span class="token punctuation">:</span>      <span class="token string">"Elis"</span><span class="token punctuation">,</span>
+		age<span class="token punctuation">:</span>       <span class="token number">3</span><span class="token punctuation">,</span>
+		isMarried<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span></code></pre><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="92d0e8eb-eabc-4592-9b92-95c90e67fca8" class="code"><code><span class="token keyword">type</span> employee <span class="token keyword">struct</span> <span class="token punctuation">{</span> <span class="token comment">// underlying type</span>
+	name      <span class="token builtin">string</span>
+	age       <span class="token builtin">int</span>
+	isMarried <span class="token builtin">bool</span>
+	kids      <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span>
+<span class="token punctuation">}</span>
+
+e1 <span class="token operator">:=</span> employee<span class="token punctuation">{</span>
+		name<span class="token punctuation">:</span>      <span class="token string">"Gurcan"</span><span class="token punctuation">,</span>
+		age<span class="token punctuation">:</span>       <span class="token number">40</span><span class="token punctuation">,</span>
+		isMarried<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+		kids<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">{</span>
+			<span class="token string">"Arin"</span><span class="token punctuation">,</span>
+			<span class="token string">"Elis"</span><span class="token punctuation">,</span>
+		<span class="token punctuation">}</span><span class="token punctuation">,</span>
+	<span class="token punctuation">}</span>
+
+	<span class="token comment">//fmt.Printf("%#v\n", e1)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>e1<span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>e1<span class="token punctuation">.</span>kids<span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>e1<span class="token punctuation">.</span>kids<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span></code></pre><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="7ad975f1-67bd-4753-9e56-33aea2d35bfb" class="code"><code><span class="token keyword">type</span> employee <span class="token keyword">struct</span> <span class="token punctuation">{</span> <span class="token comment">// underlying type</span>
+	name      <span class="token builtin">string</span>
+	age       <span class="token builtin">int</span>
+	isMarried <span class="token builtin">bool</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">type</span> manager <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+	employee
+	hasDegree <span class="token builtin">bool</span>
+<span class="token punctuation">}</span>
+
+m1 <span class="token operator">:=</span> manager<span class="token punctuation">{</span>
+		employee<span class="token punctuation">:</span> employee<span class="token punctuation">{</span>
+			name<span class="token punctuation">:</span>      <span class="token string">"Ayşe"</span><span class="token punctuation">,</span>
+			age<span class="token punctuation">:</span>       <span class="token number">28</span><span class="token punctuation">,</span>
+			isMarried<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+		<span class="token punctuation">}</span><span class="token punctuation">,</span>
+		hasDegree<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+	<span class="token punctuation">}</span>
+veya
+m1 <span class="token operator">:=</span> manager<span class="token punctuation">{</span><span class="token punctuation">}</span>
+m1<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">"Ayşe"</span>
+m1<span class="token punctuation">.</span>age <span class="token operator">=</span> <span class="token number">28</span>
+m1<span class="token punctuation">.</span>isMarried <span class="token operator">=</span> <span class="token boolean">false</span>
+m1<span class="token punctuation">.</span>hasDegree <span class="token operator">=</span> <span class="token boolean">true</span></code></pre><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="6a34b179-ed76-4349-b9bb-1f159fd9c049" class="code"><code><span class="token comment">// Anonim Struct</span>
+	theBoss <span class="token operator">:=</span> <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+		name  <span class="token builtin">string</span>
+		money <span class="token builtin">bool</span>
+	<span class="token punctuation">}</span><span class="token punctuation">{</span>name<span class="token punctuation">:</span> <span class="token string">"THE BOSS"</span><span class="token punctuation">,</span> money<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">}</span></code></pre></details></li></ul><ul id="88a31e1b-2651-4c49-a7f9-220ac1fb6443" class="toggle"><li><details open=""><summary>Metotlar</summary><p id="83dbde9c-416a-48f9-9bc1-f115230e8075" class="">Go’da yapılar için tanımlanan özel fonksiyonlardır. Bu fonksiyonlar, yapılara aittir ve sadece yapı örnekleri ile kullanılabilir.</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="86038c40-7f79-481c-9a3c-a7d3b73ec29d" class="code"><code><span class="token keyword">type</span> Rect <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    width  <span class="token builtin">float64</span>
+    height <span class="token builtin">float64</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>r Rect<span class="token punctuation">)</span> <span class="token function">Area</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">float64</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> r<span class="token punctuation">.</span>width <span class="token operator">*</span> r<span class="token punctuation">.</span>height
+<span class="token punctuation">}</span>
+
+r <span class="token operator">:=</span> Rect<span class="token punctuation">{</span>
+    width<span class="token punctuation">:</span>  <span class="token number">5.0</span><span class="token punctuation">,</span>
+    height<span class="token punctuation">:</span> <span class="token number">4.0</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"area:"</span><span class="token punctuation">,</span> r<span class="token punctuation">.</span><span class="token function">Area</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre></details></li></ul><ul id="3d980b3f-7dc3-46e6-939d-ceb18d6b5dd2" class="toggle"><li><details open=""><summary>Neden Kendi Veri Tipimiz</summary><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="0b41d8b2-8141-4e49-af3f-a2400ae23d19" class="code"><code><span class="token keyword">type</span> mile <span class="token builtin">float64</span>
+<span class="token keyword">type</span> kilometer <span class="token builtin">float64</span>
+
+<span class="token keyword">var</span> m1 mile
+m1 <span class="token operator">=</span> <span class="token number">3.2</span>
+veya
+m2 <span class="token operator">:=</span> <span class="token function">mile</span><span class="token punctuation">(</span><span class="token number">4.6</span><span class="token punctuation">)</span>
+<span class="token comment">// mile değişkenini normal float64 değişkeni ile toplayamayız. tip dönümüşü yapmak gerekir. çünkü mile float64den extend olsada tipi miledir</span></code></pre><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="5e36b653-87ca-4a7d-8f60-59f7b6e90f02" class="code"><code>m1 <span class="token operator">:=</span> <span class="token function">mile</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+k1 <span class="token operator">:=</span> <span class="token function">toKilometer</span><span class="token punctuation">(</span>m1<span class="token punctuation">)</span>
+k2 <span class="token operator">:=</span> <span class="token function">kilometer</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span>
+m2 <span class="token operator">:=</span> <span class="token function">toMile</span><span class="token punctuation">(</span>k2<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">toKilometer</span><span class="token punctuation">(</span>m mile<span class="token punctuation">)</span> kilometer <span class="token punctuation">{</span>
+	<span class="token keyword">return</span> <span class="token function">kilometer</span><span class="token punctuation">(</span>m <span class="token operator">*</span> <span class="token number">1.6</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">toMile</span><span class="token punctuation">(</span>k kilometer<span class="token punctuation">)</span> mile <span class="token punctuation">{</span>
+	<span class="token keyword">return</span> <span class="token function">mile</span><span class="token punctuation">(</span>k <span class="token operator">*</span> <span class="token number">0.62</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre></details></li></ul><ul id="a6bd4c63-6d84-4c25-903a-9547627d4d1c" class="toggle"><li><details open=""><summary>Pointer</summary><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="4fb8de4e-8fe7-4e71-a48c-21913662f7e0" class="code"><code>name <span class="token operator">:=</span> <span class="token string">"arin"</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>name<span class="token punctuation">)</span> <span class="token comment">// &amp; --> address operator (ambersant) tipi ise *string</span></code></pre><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="f1f5b8e3-05da-41b1-a122-22f8971549ac" class="code"><code>x <span class="token operator">:=</span> <span class="token number">22</span> <span class="token operator">*</span><span class="token operator">/</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>        <span class="token comment">// 22</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>x<span class="token punctuation">)</span>       <span class="token comment">// 22 nin adresi &amp;x ---> *int (* asteriks)</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span>    <span class="token comment">// dereferencing (adresi verilenin değerini verir)</span></code></pre><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="2e01733f-2273-4f0b-bcb0-c6c290f3761f" class="code"><code><span class="token comment">// x1 in adresini x2 tuttuğu için eğer x2nin değeri değiştirilirse x1in değeride değişir</span>
+x1 <span class="token operator">:=</span> <span class="token number">10</span>
+x2 <span class="token operator">:=</span> <span class="token operator">&amp;</span>x1
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>x1<span class="token punctuation">,</span> x2<span class="token punctuation">)</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>x1<span class="token punctuation">,</span> <span class="token operator">*</span>x2<span class="token punctuation">)</span>
+<span class="token comment">// 10 10</span>
+x2 <span class="token operator">=</span> <span class="token number">3</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>x1<span class="token punctuation">,</span> <span class="token operator">*</span>x2<span class="token punctuation">)</span>
+<span class="token comment">// 3 3</span></code></pre><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="e95bffca-9050-4b33-ae86-fc6a6a22d2b8" class="code"><code><span class="token comment">// büyük verilerle çalışırken onları kopyalamak yerine bellek adresleri üzerinde işlem yapılarak performans sağlanır.</span>
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	x <span class="token operator">:=</span> <span class="token number">5</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+	<span class="token function">double</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>x<span class="token punctuation">)</span> <span class="token comment">// bellek adresi gönderilir</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">double</span><span class="token punctuation">(</span>num <span class="token operator">*</span><span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// double --> pointer method</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span>
+	<span class="token operator">*</span>num <span class="token operator">*=</span> <span class="token number">2</span> <span class="token comment">//gelen bellek adresindeki değer * ile değişkenin değerine ulaşılır.</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token operator">*</span>num<span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre></details></li></ul><ul id="85701d2f-ca51-48df-9d1c-995d02bf82fb" class="toggle"><li><details open=""><summary>Interfaces</summary><p id="c23f094b-7b3a-4c47-ae47-96da52640deb" class="">Interfaces yani arayüzler, OOP dünyasında çok yaygın kullanılır. Go, yapı ve işlevlerle birlikte arayüzleri uygular ve sahte bir OOP desteği sunar.</p><p id="94f01eeb-4ed0-4449-baea-17e8b9bc5e92" class="">Nesne yönelimli programlama dillerin aksine, Go’da interface açıkça uygulanmaz. Arayüzün uygulanması için, arayüz içindeki tüm işlevlerin bir yapı üzerinde tanımlanmış olması gerekir. Tüm işlevler oluşturulduğunda, Go arayüz implementasyonunu kabul eder.</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="5fdf0e2f-2c5a-4889-b738-d6e95e989b8a" class="code"><code><span class="token keyword">type</span> Shaper <span class="token keyword">interface</span> <span class="token punctuation">{</span>
+    <span class="token function">Area</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">float64</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">type</span> Rect <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    width  <span class="token builtin">float64</span>
+    height <span class="token builtin">float64</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">func</span> <span class="token punctuation">(</span>r Rect<span class="token punctuation">)</span> <span class="token function">Area</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">float64</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> r<span class="token punctuation">.</span>width <span class="token operator">*</span> r<span class="token punctuation">.</span>height
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> main <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> r Shaper <span class="token operator">=</span> Rect<span class="token punctuation">{</span>
+        width<span class="token punctuation">:</span>  <span class="token number">5.0</span><span class="token punctuation">,</span>
+        height<span class="token punctuation">:</span> <span class="token number">4.0</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span>
+ 
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"type of r is %T\n"</span><span class="token punctuation">,</span> r<span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"value of r is %v\n"</span><span class="token punctuation">,</span> r<span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"value of r area is %.2f\n\n"</span><span class="token punctuation">,</span> r<span class="token punctuation">.</span><span class="token function">Area</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre><p id="471dd1eb-3224-46aa-8e86-cc28e919a2c3" class="">Fonksiyonlar, arayüz tipini parametre tipi olarak kabul edebilir. Bu özellik sayesinde daha esnek (genişlemeye müsait) programlar yazabiliriz.</p><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css')</style><pre id="5156d73d-070a-4903-bcca-190f976becb5" class="code"><code><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">"fmt"</span>
+
+<span class="token keyword">type</span> Shaper <span class="token keyword">interface</span> <span class="token punctuation">{</span>
+    <span class="token function">Area</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">float64</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">Calculator</span><span class="token punctuation">(</span>s Shaper<span class="token punctuation">)</span> <span class="token builtin">float64</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> s<span class="token punctuation">.</span><span class="token function">Area</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">type</span> Rect <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    width  <span class="token builtin">float64</span>
+    height <span class="token builtin">float64</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">type</span> Circle <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+    radius <span class="token builtin">float64</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>r Rect<span class="token punctuation">)</span> <span class="token function">Area</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">float64</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> r<span class="token punctuation">.</span>width <span class="token operator">*</span> r<span class="token punctuation">.</span>height
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token punctuation">(</span>c Circle<span class="token punctuation">)</span> <span class="token function">Area</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token builtin">float64</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token number">3.14</span> <span class="token operator">*</span> c<span class="token punctuation">.</span>radius <span class="token operator">*</span> c<span class="token punctuation">.</span>radius
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    r <span class="token operator">:=</span> Rect<span class="token punctuation">{</span>width<span class="token punctuation">:</span> <span class="token number">5.0</span><span class="token punctuation">,</span> height<span class="token punctuation">:</span> <span class="token number">4.0</span><span class="token punctuation">}</span>
+    c <span class="token operator">:=</span> Circle<span class="token punctuation">{</span>radius<span class="token punctuation">:</span> <span class="token number">3.0</span><span class="token punctuation">}</span>
+    
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"rect area is %.2f\n\n"</span><span class="token punctuation">,</span> <span class="token function">Calculator</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"circle area is %.2f\n\n"</span><span class="token punctuation">,</span> <span class="token function">Calculator</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span></code></pre></details></li></ul></div></article></body></html>
